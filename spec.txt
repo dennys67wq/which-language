@@ -1,0 +1,68 @@
+PROJECT: mini-budget
+AUTHOR: Deniz Yücel Uzunay (251478081)
+VERSION: v1
+DATE: 2026-03-16
+
+========================================
+OVERVIEW
+========================================
+
+mini-budget is a command-line income and expense tracker.
+It stores financial transactions in a plain text file and supports
+adding, listing, checking balance, and deleting transactions.
+
+All data is persisted in a directory called .minibudget/
+in the current working directory.
+
+========================================
+COMMANDS
+========================================
+
+--- init ---
+Usage: python minibudget.py init
+Creates a .minibudget/ directory and an empty transactions.dat file.
+If .minibudget/ already exists, print "Already initialized" and exit.
+
+--- add ---
+Usage: python minibudget.py add <TYPE> <amount> "<description>"
+TYPE must be either INCOME or EXPENSE.
+Appends a new transaction to transactions.dat.
+Each transaction has: id (auto-increment), type, amount, description, created_date.
+Prints "Added transaction #<id>: <TYPE> <amount>"
+
+--- list ---
+Usage: python minibudget.py list
+Prints all transactions, one per line:
+  [1] [INCOME] 5000 - Salary (2026-03-16)
+  [2] [EXPENSE] 150 - Groceries (2026-03-16)
+If no transactions exist, prints "No transactions found."
+
+--- balance ---
+Usage: python minibudget.py balance
+Calculates the total balance (Total INCOME - Total EXPENSE).
+Prints "Current Balance: <amount>"
+
+--- delete ---
+Usage: python minibudget.py delete 1
+Removes transaction #1 from transactions.dat.
+Prints "Deleted transaction #1."
+If transaction does not exist, prints "Transaction #1 not found."
+
+========================================
+DATA FORMAT
+========================================
+
+File: .minibudget/transactions.dat
+Format: One transaction per line, fields separated by |
+Example:
+1|INCOME|5000|Salary|2026-03-16
+2|EXPENSE|150|Groceries|2026-03-16
+
+========================================
+ERROR HANDLING
+========================================
+
+- Running any command before "init": print "Not initialized. Run: python minibudget.py init"
+- Invalid command: print "Unknown command: <command>"
+- Missing arguments: print "Usage: python minibudget.py <command> [args]"
+- Negative amount: If <amount> is less than 0, print "Error: Amount must be positive."
