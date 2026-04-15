@@ -1,0 +1,4 @@
+PROJECT: minibudget
+OVERVIEW: A command-line income and expense tracker.
+COMMANDS: init, add, list.
+ERROR HANDLING: If amount is negative, print "Error: Amount must be positive."
